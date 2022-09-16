@@ -1,9 +1,9 @@
-const Pacientes = require("../models/Pacientes");
+const {Pacientes, Atendimentos} = require("../models");
 
 const pacientesController = {
     async listarPacientes(req, res){
         try {
-            const {page = 1, limit = 20} = req.query;
+            const { page = 1, limit = 20 } = req.query;
             const offset = parseInt(limit) * (parseInt(page) - 1);
 
             let filter = {
@@ -11,16 +11,16 @@ const pacientesController = {
                 offset
             };
 
-        const pacientes = await Pacientes.findAll(filter);
+            const pacientes = await Pacientes.findAll(filter);
 
-        return res.status(200).json(Pacientes);
+        return res.status(200).json(pacientes);
     }
     catch (error) {
         console.error(error);
         return res.status(404).json("Não foi possivel localizar dados");
     };
 },
-    async mostrarPaciente(req, res) {
+    async mostrarPacientes(req, res) {
         try{
             const {id} = req.params;
             const pacienteEspecifico = await Pacientes.findByPk(id);
@@ -57,7 +57,7 @@ const pacientesController = {
         try {
             const {id} = req.params;
             const {nome, email, idade} = req.body;
-            const exisrsUser = await Pacientes.count({
+            const existsUser = await Pacientes.count({
                 where: {
                     email
                 }
@@ -75,7 +75,7 @@ const pacientesController = {
                 },
                 {
                     where: {
-                        id
+                       paciente_id: id
                     },
                 }
             );
@@ -83,7 +83,7 @@ const pacientesController = {
             const pacienteAtualizado = await Pacientes.findByPk(id);
 
             if (!pacienteAtualizado) {
-                return res.status(404).json("Id não encontrado");
+                return res.status(400).json("Id não encontrado");
             };
 
             return res.status(200).json(pacienteAtualizado);
