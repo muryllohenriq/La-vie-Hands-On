@@ -80,7 +80,7 @@ const psicologosController = {
                 },
                 {
                     where: {
-                        id
+                        psicologo_id: id
                     },
                 }
             );
@@ -104,7 +104,7 @@ const psicologosController = {
             const { id } = req.params;
             const psicologoById = await Psicologos.count({
                 where: {
-                    id
+                    psicologo_id: id
                 }
             });
 
@@ -124,7 +124,7 @@ const psicologosController = {
 
             await Psicologos.destroy({
                 where: {
-                    id
+                    psicologo_id: id
                 },
             });
 

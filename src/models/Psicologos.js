@@ -18,7 +18,7 @@ const Psicologos = db.define(
       allowNull: false,
     },
     senha: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     apresentacao: {

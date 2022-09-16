@@ -19,13 +19,13 @@ routes.post('/login', loginValidator, authController.login);
 
 routes.get('/pacientes', pacientesController.listarPacientes);
 routes.get('/pacientes/:id', idValidator, pacientesController.mostrarPacientes);
-routes.post('/paciente/criar', auth, pacientesController.cadastrarPaciente);
+routes.post('/pacientes', pacientesController.cadastrarPaciente);
 routes.put('/pacientes/:id', idValidator, pacientesController.atualizarPaciente);
 routes.delete('/pacientes/:id', idValidator, pacientesController.deletarPaciente);
 
 routes.get("/atendimentos", atendimentosController.listarAtendimentos);
 routes.get("/atendimentos/:id", idValidator, atendimentosController.buscarIdAtendimentos);
-routes.post("/atendimentos", auth, atendimentosController.cadastrarAtendimentos);
+routes.post("/atendimentos", atendimentosController.cadastrarAtendimentos);
 
 routes.get("/dashboards/psicologos", dashboardsController.listarPsicologos);
 routes.get("/dashboards/pacientes", dashboardsController.listarPacientes);

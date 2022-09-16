@@ -99,7 +99,7 @@ const pacientesController = {
             const {id} = req.params;
             const existPaciente = await Pacientes.count({
                 where: {
-                    id
+                    paciente_id: id
                 }
             });
 
@@ -115,7 +115,7 @@ const pacientesController = {
 
             await Pacientes.destroy({
                 where: {
-                    id
+                    paciente_id: id
                 }
             });
 
